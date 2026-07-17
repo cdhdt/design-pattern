@@ -1,0 +1,13 @@
+{
+  "numero": "2026-0142",
+  "date": "17/07/2026",
+  "client": {
+    "nom": "Menuiserie Duval",
+    "adresse": "8 avenue de la Gare, 69003 Lyon"
+  },
+  "lignes": [
+    { "designation": "Licence FacturoPlus (12 mois)", "quantite": 3, "prixUnitaireHT": 420 },
+    { "designation": "Formation utilisateurs", "quantite": 2, "prixUnitaireHT": 350 },
+    { "designation": "Reprise de données", "quantite": 1, "prixUnitaireHT": 180 }
+  ]
+}

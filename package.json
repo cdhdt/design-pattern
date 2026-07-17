@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "Génération de documents commerciaux - Template Method + Strategy",
   "type": "module",
+  "bin": {
+    "facturoplus": "dist/main.js"
+  },
   "scripts": {
     "dev": "tsx src/main.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/main.js",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

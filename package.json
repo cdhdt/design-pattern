@@ -7,13 +7,19 @@
     "dev": "tsx src/main.ts",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "lint": "eslint . --ext .ts",
-    "qa": "npm run typecheck && npm run format && npm run lint"
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "qa": "npm run typecheck && npm run format:check && npm run lint"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^20.17.10",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.64.0"
   },
   "dependencies": {
     "prettier": "^3.9.5"

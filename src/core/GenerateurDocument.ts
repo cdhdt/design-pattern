@@ -11,8 +11,12 @@ export abstract class GenerateurDocument {
       this.renderer.enTete({ titre, numero: donnees.numero, date: donnees.date }),
       this.sectionClient(donnees),
       this.sectionLignes(donnees),
-      this.sectionTotaux(donnees),
     ];
+
+    const totaux = this.calculerTotaux(donnees);
+    if (totaux !== null) {
+      sections.push(this.sectionTotaux(totaux));
+    }
 
     const conditions = this.conditionsParticulieres();
     if (conditions !== null) {
@@ -30,7 +34,11 @@ export abstract class GenerateurDocument {
   }
 
   protected abstract titre(): string;
-  protected abstract calculerTotaux(donnees: DonneesDocument): Totaux;
+  protected abstract calculerTotaux(donnees: DonneesDocument): Totaux | null;
+
+  protected afficherPrix(): boolean {
+    return true;
+  }
 
   protected conditionsParticulieres(): readonly string[] | null {
     return null;
@@ -71,6 +79,13 @@ export abstract class GenerateurDocument {
   }
 
   private sectionLignes(donnees: DonneesDocument): string {
+    if (!this.afficherPrix()) {
+      return this.renderer.tableau({
+        entetes: ["Désignation", "Qté"],
+        lignes: donnees.lignes.map((ligne) => [ligne.designation, String(ligne.quantite)]),
+      });
+    }
+
     const lignes = donnees.lignes.map((ligne) => [
       ligne.designation,
       String(ligne.quantite),
@@ -84,8 +99,7 @@ export abstract class GenerateurDocument {
     });
   }
 
-  private sectionTotaux(donnees: DonneesDocument): string {
-    const totaux = this.calculerTotaux(donnees);
+  private sectionTotaux(totaux: Totaux): string {
     const pourcentage = `${Math.round(totaux.tauxTVA * 100).toString()} %`;
 
     return this.renderer.section({

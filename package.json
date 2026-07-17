@@ -1,0 +1,15 @@
+{
+  "name": "facturoplus",
+  "version": "1.0.0",
+  "description": "Génération de documents commerciaux - Template Method + Strategy",
+  "type": "module",
+  "scripts": {
+    "demo": "tsx src/main.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "@types/node": "^20.17.10"
+  }
+}
